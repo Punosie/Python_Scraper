@@ -17,6 +17,7 @@ rating_element = soup.select_one('#acrPopover')
 rating_text = rating_element.attrs.get('title')
 rating = rating_text.replace('out of 5 stars', '')
 
+price_element = soup.select_one('span.a-price').select_one('span.a-price-whole')
+price = price_element.text.strip()
 
-print(rating_text)
-print(rating)
+print(price)
