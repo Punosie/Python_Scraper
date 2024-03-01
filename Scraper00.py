@@ -23,4 +23,7 @@ price = price_element.text.strip()
 image_element = soup.select_one('#landingImage')
 image = image_element.attrs.get('src')
 
-print(image)
+description_element = soup.select_one('#feature-bullets')
+description = description_element.text
+
+print(description)
