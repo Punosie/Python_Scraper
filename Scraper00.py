@@ -20,4 +20,7 @@ rating = rating_text.replace('out of 5 stars', '')
 price_element = soup.select_one('span.a-price').select_one('span.a-price-whole')
 price = price_element.text.strip()
 
-print(price)
+image_element = soup.select_one('#landingImage')
+image = image_element.attrs.get('src')
+
+print(image)
