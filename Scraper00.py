@@ -26,4 +26,36 @@ image = image_element.attrs.get('src')
 description_element = soup.select_one('#feature-bullets')
 description = description_element.text
 
-print(description)
+review_element = soup.select('div.review')
+scraped_rivews = []
+
+for review in review_element:
+    r_author_element = review.select_one('span.a-profile-name')
+    r_author = r_author_element.text if r_author_element else None
+
+    r_rating_element = review.select_one('i.review-rating')
+    r_rating = r_rating_element.text.replace('out of 5 stars', '') if r_rating_element else None
+
+    r_title_element = review.select_one('a.review_title')
+    r_title_span_element = r_title_element.select_one("span:not([class])") if r_title_element else None
+    r_title = r_title_span_element.text if r_title_span_element else None
+
+    r_content_element = review.select_one('span.review-text')
+    r_content = r_content_element.text if r_content_element else None
+
+    r_date_element = review.select_one('span.review-date')
+    r_date = r_date_element.text if r_date_element else None
+
+    r_verified_element = review.select_one('span.a-size-mini')
+    r_verified = r_verified_element.text if r_verified_element else None
+
+    r = {
+        "author" : r_author,
+        "rating" : r_rating,
+        "title" : r_title,
+        "content" : r_content,
+        "date" : r_date,
+        "verified" : r_verified
+        }
+    
+    scraped_rivews.append(r)
